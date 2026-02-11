@@ -3,9 +3,13 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using SistemaDeBiblioteca.Entities;
-using System.Net;
+
 
 namespace SistemaDeBiblioteca.Repositories {
+
+    /// <summary>
+    /// Classe responsável por inserir, atualizar, listar e deletar livros do banco de dados.
+    /// </summary>
     public class LivroRepository {
 
         public void Inserir(Livro livro) {
@@ -55,5 +59,59 @@ namespace SistemaDeBiblioteca.Repositories {
             }
 
         }
+
+        public void ListarResumido () {
+
+            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;";
+
+            using (var connection = new SqlConnection(connectionString)) {
+
+                var query = """
+                    SELECT ID, NOME FROM LIVROS
+                    """;
+
+                connection.Execute(query);
+            }
+        }
+
+        public void ListarPorId(int id) {
+
+            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;";
+
+            using (var connection = new SqlConnection(connectionString)) {
+
+                var query = """
+                    SELECT NOME, EDITORA, AUTOR, PRECO, QUANTIDADEPAGINAS, QUANTIDADE, ANOEDICAO, TIPOLIVRO, GENERO FROM LIVROS
+                    WHERE ID = @ID
+                    """;
+
+                connection.Execute(query, new {
+                    @ID = id
+                });
+            }
+
+        }
+
+        public void Deletar(int id) {
+
+            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;";
+
+            using ( var connection = new SqlConnection(connectionString)) {
+
+                var query = """
+                    DELETE FROM LIVROS 
+                    WHERE ID = @ID
+                    """;
+
+                connection.Execute(query, new {
+                    @ID = id
+                });
+            }
+
+            
+
+        }
+
+
     }
 }
