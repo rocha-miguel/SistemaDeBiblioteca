@@ -17,9 +17,9 @@ namespace SistemaDeBiblioteca.Entities {
 
         public int Quantidade { get; set; } = 0;
 
-        public int QuantidadePaginas { get; set; }
+        public int QuantidadePaginas { get; set; } = 0;
 
-        public DateOnly AnoEdicao { get; set; }
+        public int AnoEdicao { get; set; }
 
         public TipoLivro Tipo { get; set; }
 

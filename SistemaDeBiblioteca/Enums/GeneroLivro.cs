@@ -3,16 +3,16 @@
 namespace SistemaDeBiblioteca.Enums {
     public enum GeneroLivro {
 
-        FICÇÃO = 0,
-        FANTASIA = 1,
-        ROMANCE = 2,
-        TERROR = 3,
-        HQ = 4,
-        AUTOAJUDA = 5,
-        RELIGIÃO = 6,
-        SOCIOLOGIA = 7,
-        FILOSOFIA = 8,
-        SUSPENSE = 9
+        FICÇÃO = 1,
+        FANTASIA = 2,
+        ROMANCE = 3,
+        TERROR = 4,
+        HQ = 5,
+        AUTOAJUDA = 6,
+        RELIGIÃO = 7,
+        SOCIOLOGIA = 8,
+        FILOSOFIA = 9,
+        SUSPENSE = 10
 
     }
 }

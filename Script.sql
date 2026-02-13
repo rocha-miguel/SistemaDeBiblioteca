@@ -14,7 +14,7 @@
 	CONSTRAINT CHK_TIPOLIVRO
 				CHECK (TIPOLIVRO IN(
 						'MOLE',
-						'DURO',
+						'DURA',
 						'EBOOK')),
 
 	CONSTRAINT CHK_GENERO
@@ -41,3 +41,6 @@
 
 ALTER TABLE LIVROS
 	ADD	QUANTIDADE		INT		NOT NULL;
+
+
+Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;

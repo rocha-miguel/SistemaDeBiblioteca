@@ -3,8 +3,8 @@
 namespace SistemaDeBiblioteca.Enums {
     public enum TipoLivro {
 
-        MOLE = 0,
-        DURA = 1,
-        EBOOK = 2
+        MOLE = 1,
+        DURA = 2,
+        EBOOK = 3
     }
 }

@@ -1,2 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+using SistemaDeBiblioteca.Controllers;
+
+var livroController = new LivroController();
+
+livroController.GerenciarLivro();
+
+Console.ReadKey();

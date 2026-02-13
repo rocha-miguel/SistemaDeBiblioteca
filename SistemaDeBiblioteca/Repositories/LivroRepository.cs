@@ -12,11 +12,13 @@ namespace SistemaDeBiblioteca.Repositories {
     /// </summary>
     public class LivroRepository {
 
+        private string _connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;";
+
         public void Inserir(Livro livro) {
 
-            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;";
+            
 
-            using (var connection = new SqlConnection(connectionString)) {
+            using (var connection = new SqlConnection(_connectionString)) {
 
                 var query = """
                     INSERT INTO LIVROS(NOME, EDITORA, AUTOR, QUANTIDADE, PRECO, QUANTIDADEPAGINAS, ANOEDICAO, TIPOLIVRO, GENERO)
@@ -40,9 +42,9 @@ namespace SistemaDeBiblioteca.Repositories {
 
         public void Atualizar(int id, decimal precoAtualizado, int quantidadeAtualizada) {
 
-            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;";
+            
 
-            using (var connection = new SqlConnection(connectionString)) {
+            using (var connection = new SqlConnection(_connectionString)) {
 
                 var query = """
                     UPDATE LIVROS 
@@ -58,45 +60,49 @@ namespace SistemaDeBiblioteca.Repositories {
                 });
             }
 
+            
         }
 
-        public void ListarResumido () {
+        public List<Livro> ListarResumido () {
 
-            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;";
+            
 
-            using (var connection = new SqlConnection(connectionString)) {
+            using (var connection = new SqlConnection(_connectionString)) {
 
                 var query = """
                     SELECT ID, NOME FROM LIVROS
                     """;
 
-                connection.Execute(query);
+                return connection.Query<Livro>(query).ToList();
             }
         }
 
-        public void ListarPorId(int id) {
+        public Livro? ListarPorId(int id) {
 
-            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;";
+           
 
-            using (var connection = new SqlConnection(connectionString)) {
+            using (var connection = new SqlConnection(_connectionString)) {
 
                 var query = """
                     SELECT NOME, EDITORA, AUTOR, PRECO, QUANTIDADEPAGINAS, QUANTIDADE, ANOEDICAO, TIPOLIVRO, GENERO FROM LIVROS
                     WHERE ID = @ID
                     """;
 
-                connection.Execute(query, new {
+                return connection.QueryFirstOrDefault<Livro>(query, new {
                     @ID = id
                 });
+
+                          
+                
             }
 
         }
 
         public void Deletar(int id) {
 
-            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDBiblioteca;Integrated Security=True;";
+            
 
-            using ( var connection = new SqlConnection(connectionString)) {
+            using ( var connection = new SqlConnection(_connectionString)) {
 
                 var query = """
                     DELETE FROM LIVROS 
